@@ -203,3 +203,12 @@ function G_markdown_toggleMPTheme()
 	G.cmd("sleep 500m")
 	G.cmd("MarkdownPreview")
 end
+
+--- Lua
+vim.o.autowriteall = true
+vim.api.nvim_create_autocmd({ "InsertLeavePre", "TextChanged", "TextChangedP" }, {
+	pattern = "*",
+	callback = function()
+		vim.cmd("silent! write")
+	end,
+})
